@@ -29,17 +29,17 @@
 
 
 ## Productsテーブル
-| column                 | Type         | Options |
-|------------------------|--------------|---------|
-|name                    |string        |NOT NULL |
-|explanation             |text          |NOT NULL |
-|genre_id'カテゴリー'      |integer       |NOT NULL |
-|genre_id'商品の状態'      |integer       |NOT NULL |
-|genre_id'配送料の負担'    |integer       |NOT NULL |
-|genre_id'発送元の地域'    |integer       |NOT NULL |
-|genre_id'発送までの日数'  |integer       |NOT NULL |
-|price                   |integer       |NOT NULL |
-|user                    |references    |         |
+| column                      | Type         | Options |
+|-----------------------------|--------------|---------|
+|product name                 |string        |NOT NULL |
+|product description          |text          |NOT NULL |
+|genre_id:category            |integer       |NOT NULL |
+|genre_id:product condition   |integer       |NOT NULL |
+|genre_id:shipping charges    |integer       |NOT NULL |
+|genre_id:shipping area       |integer       |NOT NULL |
+|genre_id:days to ship        |integer       |NOT NULL |
+|price                        |integer       |NOT NULL |
+|user                         |references    |         |
 ### Association
 - belongs_to :user
 - has_many   : comments
@@ -58,13 +58,13 @@
 
 
 ## Sendingテーブル
-| column               | Type   | Options |
-|----------------------|--------|---------|
-|'郵便番号'             |integer  |NOT NULL |
-|genre_id''都道府県'    |integer  |NOT NULL |
-|'市区町村'             |string   |NOT NULL |
-|'番地'                |string   |NOT NULL |
-|'建物名'              |string   |         |
-|'電話番号'             |integer  |NOT NULL |
+| column               | Type    | Options |
+|----------------------|---------|---------|
+|postal code           |integer  |NOT NULL |
+|genre_id:prefectures  |integer  |NOT NULL |
+|municipality          |string   |NOT NULL |
+|address               |string   |NOT NULL |
+|building name         |string   |         |
+|phone number          |integer  |NOT NULL |
 ### Association
 - belongs_to :purchase
