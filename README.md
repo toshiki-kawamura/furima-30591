@@ -6,40 +6,40 @@
 |nickname            |string     |NOT NULL |
 |email               |string     |NOT NULL |
 |password            |string     |NOT NULL |
-|last name           |string     |NOT NULL |
-|first name          |string     |NOT NULL |
-|last name(katakana) |string     |NOT NULL |
-|first name(katakana)|string     |NOT NULL |
-|date of birth       |date       |NOT NULL |
+|last_name           |string     |NOT NULL |
+|first_name          |string     |NOT NULL |
+|last_name_kana      |string     |NOT NULL |
+|first_name_kana)    |string     |NOT NULL |
+|date_of_birth       |date       |NOT NULL |
 ### Association
 - has_many : comments
 - has_many : Products
-- has_one  : purchase
+- has_many : purchase
 
 
 ## Commentsテーブル
-| column   | Type      | Options |
-|----------|-----------|---------|
-|text      |text       |         |
-|user      |references |         |
-|Product   |references |         |
+| column   | Type      | Options          |
+|----------|-----------|------------------|
+|text      |text       |                  |
+|user      |references |foreign_key: true |
+|Product   |references |foreign_key: true |
 ### Association
 - belongs_to :user
 - belongs_to :product
 
 
 ## Productsテーブル
-| column                      | Type         | Options |
-|-----------------------------|--------------|---------|
-|product name                 |string        |NOT NULL |
-|product description          |text          |NOT NULL |
-|genre_id:category            |integer       |NOT NULL |
-|genre_id:product condition   |integer       |NOT NULL |
-|genre_id:shipping charges    |integer       |NOT NULL |
-|genre_id:shipping area       |integer       |NOT NULL |
-|genre_id:days to ship        |integer       |NOT NULL |
-|price                        |integer       |NOT NULL |
-|user                         |references    |         |
+| column                | Type         | Options |
+|-----------------------|--------------|---------|
+|name                   |string        |NOT NULL |
+|description            |text          |NOT NULL |
+|category_id            |integer       |NOT NULL |
+|product condition_id   |integer       |NOT NULL |
+|shipping charges_id    |integer       |NOT NULL |
+|shipping area_id       |integer       |NOT NULL |
+|days to ship_id        |integer       |NOT NULL |
+|price                  |integer       |NOT NULL |
+|user                   |references    |foreign_key: true |
 ### Association
 - belongs_to :user
 - has_many   : comments
@@ -49,22 +49,24 @@
 ## Purchasesテーブル
 | column  | Type       | Options |
 |---------|------------|---------|
-|user     |references  |         |
-|product  |references  |         |
+|user     |references  | foreign_key: true        |
+|product  |references  | foreign_key: true        |
 ### Association
 - belongs_to :user
 - belongs_to :product
 - has_one    :sending
 
 
-## Sendingテーブル
-| column               | Type    | Options |
-|----------------------|---------|---------|
-|postal code           |integer  |NOT NULL |
-|genre_id:prefectures  |integer  |NOT NULL |
-|municipality          |string   |NOT NULL |
-|address               |string   |NOT NULL |
-|building name         |string   |         |
-|phone number          |integer  |NOT NULL |
+## Sendingsテーブル
+| column        | Type      | Options |
+|---------------|-----------|---------|
+|postal_code    |string     |NOT NULL |
+|prefectures_id |integer    |NOT NULL |
+|municipality   |string     |NOT NULL |
+|address        |string     |NOT NULL |
+|building_name  |string     |         |
+|phone_number   |string     |NOT NULL |
+|purchase       |references |foreign_key: true|
+
 ### Association
 - belongs_to :purchase
