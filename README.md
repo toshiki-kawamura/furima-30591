@@ -9,12 +9,12 @@
 |last_name           |string     |NOT NULL |
 |first_name          |string     |NOT NULL |
 |last_name_kana      |string     |NOT NULL |
-|first_name_kana)    |string     |NOT NULL |
+|first_name_kana     |string     |NOT NULL |
 |date_of_birth       |date       |NOT NULL |
 ### Association
 - has_many : comments
-- has_many : Products
-- has_many : purchase
+- has_many : products
+- has_many : purchases
 
 
 ## Commentsテーブル
@@ -34,10 +34,10 @@
 |name                   |string        |NOT NULL |
 |description            |text          |NOT NULL |
 |category_id            |integer       |NOT NULL |
-|product condition_id   |integer       |NOT NULL |
-|shipping charges_id    |integer       |NOT NULL |
-|shipping area_id       |integer       |NOT NULL |
-|days to ship_id        |integer       |NOT NULL |
+|product_condition_id   |integer       |NOT NULL |
+|shipping_charges_id    |integer       |NOT NULL |
+|shipping_area_id       |integer       |NOT NULL |
+|days_to_ship_id        |integer       |NOT NULL |
 |price                  |integer       |NOT NULL |
 |user                   |references    |foreign_key: true |
 ### Association
@@ -61,7 +61,7 @@
 | column        | Type      | Options |
 |---------------|-----------|---------|
 |postal_code    |string     |NOT NULL |
-|prefectures_id |integer    |NOT NULL |
+|prefecture_id |integer    |NOT NULL |
 |municipality   |string     |NOT NULL |
 |address        |string     |NOT NULL |
 |building_name  |string     |         |
