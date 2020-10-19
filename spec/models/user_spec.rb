@@ -47,6 +47,29 @@ require 'rails_helper'
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana can't be blank")
       end
+      
+      it 'password:半角英数混合(半角英語のみ)' do
+        binding.pry
+        @user.password = 'aaaaaaa'
+        @user.valid?
+        
+        expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
+      end
+
+  #     it 'パスワードは、確認用を含めて2回入力すること' do
+  #     end
+
+  #     it'パスワードとパスワード（確認用）、値の一致が必須であること'do
+  #     end
+
+  #     it'ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること'do
+
+  #   end
+
+  #   it '生年月日が必須であること'do
+  # end
+
+    
 
 
     end
