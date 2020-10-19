@@ -11,7 +11,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :first_name,         null: false, default: ""
       t.string :last_name_kana,     null: false, default: ""
       t.string :first_name_kana,    null: false, default: ""
-      t.string :date_of_birth,      null: false, default: ""
+      t.date   :date_of_birth,      null: false
 
       ## Recoverable
       t.string   :reset_password_token
@@ -42,8 +42,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.timestamps null: false
     end
 
-    add_index :users, :email,                unique: true
-    add_index :users, :reset_password_token, unique: true
+     #add_index :users, :email,                unique: true
+     #add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
   end

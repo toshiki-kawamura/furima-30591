@@ -1,4 +1,4 @@
-class Genre < ApplicationRecord
+class Genre < ActiveHash::Base
   self.data = [
     { id: 1, name: '--' },
     { id: 2, name: '経済' },
@@ -11,4 +11,4 @@ class Genre < ApplicationRecord
     { id: 9, name: 'グルメ' },
     { id: 10, name: 'その他' }
   ]
-end
+  end
