@@ -13,7 +13,7 @@
 |date_of_birth       |date       |NOT NULL |
 ### Association
 - has_many : comments
-- has_many : products
+- has_many : items
 - has_many : purchases
 
 
@@ -25,10 +25,10 @@
 |Product   |references |foreign_key: true |
 ### Association
 - belongs_to :user
-- belongs_to :product
+- belongs_to :item
 
 
-## Productsテーブル
+## Itemsテーブル
 | column                | Type         | Options |
 |-----------------------|--------------|---------|
 |name                   |string        |NOT NULL |
@@ -53,7 +53,7 @@
 |product  |references  | foreign_key: true        |
 ### Association
 - belongs_to :user
-- belongs_to :product
+- belongs_to :item
 - has_one    :sending
 
 
