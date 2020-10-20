@@ -49,28 +49,42 @@ require 'rails_helper'
       end
       
       it 'password:半角英数混合(半角英語のみ)' do
-        binding.pry
         @user.password = 'aaaaaaa'
+        @user.password_confirmation = 'aaaaaaa'
         @user.valid?
-        
-        expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
+        expect(@user.errors.full_messages).to include("Password is invalid")
       end
 
-  #     it 'パスワードは、確認用を含めて2回入力すること' do
-  #     end
+      it 'パスワードは、確認用を含めて2回入力すること' do
+        @user.password = 'aaaaaa1'
+        @user.password_confirmation = 'aaaaaa1'
+        expect(@user).to be_valid
+      end
 
-  #     it'パスワードとパスワード（確認用）、値の一致が必須であること'do
-  #     end
+       it'パスワードとパスワード（確認用）、値の一致が必須であること'do
+       @user.password = 'aaaaaa1'
+       @user.password_confirmation = 'aaaaaa2'
+       @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+       end
 
-  #     it'ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること'do
+       it'last_nameは、全角（カタカナ）での入力が必須であること'do
+        @user.last_name_kana = 'aa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana is invalid")
+       end
 
-  #   end
+       it'first_nameは、全角（カタカナ）での入力が必須であること'do
+       @user.first_name_kana = 'aa'
+       @user.valid?
+       expect(@user.errors.full_messages).to include("First name kana is invalid")
+      end
 
-  #   it '生年月日が必須であること'do
-  # end
-
+     it '生年月日が必須であること'do
+     @user.date_of_birth = nil
+     @user.valid?
+     expect(@user.errors.full_messages).to include("Date of birth can't be blank")
+   end
     
-
-
     end
   end
