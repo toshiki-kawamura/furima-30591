@@ -55,6 +55,13 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('Password is invalid')
     end
 
+    it 'password:半角英数混合(半角数字のみ)' do
+      @user.password = '1111111'
+      @user.password_confirmation = '1111111'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password is invalid')
+    end
+
     it 'パスワードは、確認用を含めて2回入力すること' do
       @user.password = 'aaaaaa1'
       @user.password_confirmation = 'aaaaaa1'
@@ -68,13 +75,25 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
 
-    it 'last_nameは、全角（カタカナ）での入力が必須であること' do
+    it 'last_nameは全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
+      @user.last_name = "aa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Last name is invalid')
+    end
+
+    it 'first_nameは全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
+      @user.first_name = "aa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include('First name is invalid')
+    end
+
+    it 'last_name_kanaは、全角（カタカナ）での入力が必須であること' do
       @user.last_name_kana = 'aa'
       @user.valid?
       expect(@user.errors.full_messages).to include('Last name kana is invalid')
     end
 
-    it 'first_nameは、全角（カタカナ）での入力が必須であること' do
+    it 'first_name_kanaは、全角（カタカナ）での入力が必須であること' do
       @user.first_name_kana = 'aa'
       @user.valid?
       expect(@user.errors.full_messages).to include('First name kana is invalid')
@@ -85,5 +104,20 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Date of birth can't be blank")
     end
+
+    it 'emailが登録済みであるとユーザー登録できない' do
+      @user.save
+      user_a = FactoryBot.build(:user)
+      user_a.email = @user.email
+      user_a.valid?
+      expect(user_a.errors.full_messages).to include("Email has already been taken")
+    end
+
+    it 'emailに@が含まれていないとユーザー登録できない' do
+      @user.email = "aaaa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email is invalid")
+    end
+
   end
 end
