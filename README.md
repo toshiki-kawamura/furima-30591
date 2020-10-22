@@ -47,10 +47,10 @@
 
 
 ## Purchasesテーブル
-| column  | Type       | Options |
-|---------|------------|---------|
+| column  | Type       | Options                  |
+|---------|------------|--------------------------|
 |user     |references  | foreign_key: true        |
-|product  |references  | foreign_key: true        |
+|item     |references  | foreign_key: true        |
 ### Association
 - belongs_to :user
 - belongs_to :item
@@ -61,7 +61,7 @@
 | column        | Type      | Options |
 |---------------|-----------|---------|
 |postal_code    |string     |NOT NULL |
-|prefecture_id |integer    |NOT NULL |
+|prefecture_id  |integer    |NOT NULL |
 |municipality   |string     |NOT NULL |
 |address        |string     |NOT NULL |
 |building_name  |string     |         |
