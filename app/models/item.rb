@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
   belongs_to_active_hash :product_condition
@@ -16,14 +15,11 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :description
-    validates :category_id, numericality: { other_than: 1 } 
-    validates :product_condition_id, numericality: { other_than: 1 } 
-    validates :shipping_charges_id, numericality: { other_than: 1 } 
-    validates :shipping_area_id, numericality: { other_than: 1 } 
-    validates :days_to_ship_id, numericality: { other_than: 1 } 
-    validates :price, :numericality => { :greater_than_or_equal_to => 300, :less_than => 10000000 }, format: { with: /\A[0-9]+\z/} 
-    
+    validates :category_id, numericality: { other_than: 1 }
+    validates :product_condition_id, numericality: { other_than: 1 }
+    validates :shipping_charges_id, numericality: { other_than: 1 }
+    validates :shipping_area_id, numericality: { other_than: 1 }
+    validates :days_to_ship_id, numericality: { other_than: 1 }
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than: 10_000_000 }, format: { with: /\A[0-9]+\z/ }
   end
-
-
 end

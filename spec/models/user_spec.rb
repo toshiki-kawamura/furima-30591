@@ -76,13 +76,13 @@ RSpec.describe User, type: :model do
     end
 
     it 'last_nameは全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
-      @user.last_name = "aa"
+      @user.last_name = 'aa'
       @user.valid?
       expect(@user.errors.full_messages).to include('Last name is invalid')
     end
 
     it 'first_nameは全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
-      @user.first_name = "aa"
+      @user.first_name = 'aa'
       @user.valid?
       expect(@user.errors.full_messages).to include('First name is invalid')
     end
@@ -110,14 +110,13 @@ RSpec.describe User, type: :model do
       user_a = FactoryBot.build(:user)
       user_a.email = @user.email
       user_a.valid?
-      expect(user_a.errors.full_messages).to include("Email has already been taken")
+      expect(user_a.errors.full_messages).to include('Email has already been taken')
     end
 
     it 'emailに@が含まれていないとユーザー登録できない' do
-      @user.email = "aaaa"
+      @user.email = 'aaaa'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Email is invalid")
+      expect(@user.errors.full_messages).to include('Email is invalid')
     end
-
   end
 end
