@@ -1,6 +1,6 @@
 class Crystal
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture_id, :municipality, :address, :building_name, :phone_number, :user_id, :item_id, :purchase_id
+  attr_accessor :postal_code, :prefecture_id, :municipality, :address, :building_name, :phone_number, :user_id, :item_id, :purchase_id, :token
 
   with_options presence: true do
     validates :postal_code
@@ -8,6 +8,7 @@ class Crystal
     validates :municipality
     validates :address
     validates :phone_number
+    validates :token
   end
 
   def save
