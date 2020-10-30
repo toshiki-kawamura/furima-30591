@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
 
   def create
     @crystal = Crystal.new(order_params)
+    binding.pry
     if @crystal.valid?
       pay_item
       @crystal.save
