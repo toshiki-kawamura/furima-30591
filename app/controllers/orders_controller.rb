@@ -1,11 +1,11 @@
 class OrdersController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
+    @crystal = Crystal.new
   end
 
   def create
     @crystal = Crystal.new(order_params)
-    binding.pry
     if @crystal.valid?
       pay_item
       @crystal.save
@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
 
   private
    def order_params
-     params.permit(:postal_code, :prefecture_id, :municipality, :address, :phone_number, :building_name).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+     params.require(:crystal).permit(:postal_code, :prefecture_id, :municipality, :address, :phone_number, :building_name).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
    end
 
    def pay_item
