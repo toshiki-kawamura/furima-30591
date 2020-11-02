@@ -54,10 +54,10 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one    :sending
+- has_one    :order
 
 
-## Sendingsテーブル
+## Ordersテーブル
 | column        | Type      | Options |
 |---------------|-----------|---------|
 |postal_code    |string     |NOT NULL |
