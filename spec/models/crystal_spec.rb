@@ -36,8 +36,13 @@ RSpec.describe Crystal, type: :model do
       @crystal.valid?
       expect(@crystal.errors.full_messages).to include("Phone number can't be blank")
     end
-    it '電話番号にはハイフンは不要で、11桁以内であること' do
+    it '電話番号にはハイフンは不要であること' do
       @crystal.phone_number = 111 - 1111 - 1111
+      @crystal.valid?
+      expect(@crystal.errors.full_messages).to include('Phone number is invalid')
+    end
+    it '電話番号は11桁以内であること' do
+      @crystal.phone_number = 111111111111
       @crystal.valid?
       expect(@crystal.errors.full_messages).to include('Phone number is invalid')
     end
