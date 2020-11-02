@@ -14,8 +14,6 @@ const pay = () => {
       exp_year: `20${formData.get("crystal[order[exp_year]]")}`,
     };
 
-    console.log(card)
-
 
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {

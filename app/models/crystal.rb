@@ -12,8 +12,7 @@ class Crystal
   end
 
   def save
-    purchase_id = item_id
+    purchase = Purchase.create(user_id: user_id, item_id: item_id)
     Order.create(postal_code: postal_code, prefecture_id: prefecture_id, municipality: municipality, building_name: building_name, address: address, phone_number: phone_number, purchase_id: purchase_id)
-    Purchase.create(user_id: user_id, item_id: item_id)
   end
 end
