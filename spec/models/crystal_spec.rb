@@ -6,6 +6,10 @@ RSpec.describe Crystal, type: :model do
       @crystal = FactoryBot.build(:crystal)
     end
 
+    it '項目が正しく入力されていれば商品の購入ができる' do
+      expect(@crystal).to be_valid
+    end
+
     it '郵便番号が必須であること' do
       @crystal.postal_code = nil
       @crystal.valid?
