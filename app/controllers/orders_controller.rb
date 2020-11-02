@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create, :pay_item]
+  before_action :authenticate_user!
+  before_action :move_to_index, only: :index
 
   def index
     @crystal = Crystal.new
@@ -34,4 +36,17 @@ class OrdersController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def move_to_index
+    @item = Item.find(params[:item_id])
+    if user_signed_in? && current_user.id == @item.user.id
+    redirect_to root_path and return
+    end
+    if @item.purchase.present?
+      redirect_to root_path
+    end
+
+  end
+
+  
 end
